@@ -1,0 +1,21 @@
+createExchange:
+  handler: src/exchange/handler/createExchange.handler
+  description: 'Create an exchange of money'
+  environment:
+    GET_RATE_FUNCTION_NAME: ${self:custom.getRateFunctionName}
+    REPORT_EXCHANGE_FUNCTION_NAME: ${self:custom.reportExchangeFunctionName}
+
+getRate:
+  handler: src/exchange/handler/getRate.handler
+  description: 'Return the convertion rate for exchange money'
+  environment:
+    GET_RATES_URL: 'https://api.ratesapi.io/api/latest'
+    GET_RATES_TIMEOUT: 3000
+
+reportExchange:
+  handler: src/exchange/handler/reportExchange.handler
+  description: 'Send a report of an exchange'
+  environment:
+    REPORT_EXCHANGE_URL: 'https://postman-echo.com/post'
+    REPORT_EXCHANGE_METHOD: 'POST'
+    REPORT_EXCHANGE_TIMEOUT: 3000

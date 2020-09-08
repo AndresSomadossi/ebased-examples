@@ -1,0 +1,27 @@
+{
+  "name": "ebased-examples",
+  "version": "1.0.0",
+  "description": "Examples using ebased as main library",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AndresSomadossi/ebased-examples.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AndresSomadossi/ebased-examples/issues"
+  },
+  "homepage": "https://github.com/AndresSomadossi/ebased-examples#readme",
+  "dependencies": {
+    "ebased": "^1.0.1",
+    "uuid": "^8.3.0"
+  },
+  "devDependencies": {
+    "serverless-pseudo-parameters": "^2.5.0"
+  }
+}

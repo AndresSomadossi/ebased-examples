@@ -1,0 +1,31 @@
+frameworkVersion: ">=1.50.0"
+service: ebased-examples
+
+plugins:
+  - serverless-pseudo-parameters
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  region: us-east-1
+  tags:
+    project: ebased-examples
+  tracing:
+    lambda: true
+  environment:
+    LOG_LEVEL: INFO
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - "lambda:InvokeFunction"
+      Resource:
+        - '${self:custom.lambdaPrefixARN}${self:custom.getRateFunctionName}'
+        - '${self:custom.lambdaPrefixARN}${self:custom.reportExchangeFunctionName}'
+
+custom:
+  lambdaPrefixARN: 'arn:aws:lambda:#{AWS::Region}:#{AWS::AccountId}:function:'
+  getRateFunctionName: '${self:service}-${self:provider.stage}-getRate'
+  reportExchangeFunctionName: '${self:service}-${self:provider.stage}-reportExchange'
+    
+functions:
+  - ${file(src/exchange/index.yml)}
