@@ -1,5 +1,5 @@
-const { ErrorHandled } = require('ebased/utils/error');
-const downstreamRequest = require('ebased/downstream/request');
+const { ErrorHandled } = require('ebased/util/error');
+const downstreamRequest = require('ebased/service/downstream/request');
 
 const REPORT_EXCHANGE_URL = process.env.REPORT_EXCHANGE_URL;
 const REPORT_EXCHANGE_METHOD = process.env.REPORT_EXCHANGE_METHOD;

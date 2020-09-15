@@ -1,5 +1,5 @@
-const { eventReceived } = require('ebased/input/eventInvoke');
-const { processingFinished, processingFinishedError } = require('ebased/output/eventConfirmation');
+const { eventReceived } = require('ebased/handler/input/eventTopic');
+const { processingFinished, processingFinishedError } = require('ebased/handler/output/eventConfirmation');
 const reportExchangeDomain = require('../domain/reportExchange');
 
 module.exports.handler = async (event, context) => {

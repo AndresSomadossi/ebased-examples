@@ -1,4 +1,4 @@
-const { ErrorHandled } = require('ebased/utils/error');
+const { ErrorHandled } = require('ebased/util/error');
 const { GetRateValidation } = require('../schema/input/getRateValidation');
 
 const { GetCurrentRatesCommand } = require('../schema/command/getCurrentRates');

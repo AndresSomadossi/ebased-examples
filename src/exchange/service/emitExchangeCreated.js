@@ -1,18 +1,14 @@
-const lambda = require('ebased/downstream/lambda');
+const sns = require('ebased/service/downstream/sns');
 
-const REPORT_EXCHANGE_FUNCTION_NAME = process.env.REPORT_EXCHANGE_FUNCTION_NAME;
+const EXCHANGE_CREATED_TOPIC = process.env.EXCHANGE_CREATED_TOPIC;
 
 const emitExchangeCreated = async (exchangeCreatedEvent) => {
   const { eventPayload, eventMeta } = exchangeCreatedEvent.get();
   const lambdaInvokeParams = {
-    FunctionName: REPORT_EXCHANGE_FUNCTION_NAME,
-    Payload: eventPayload,
+    TopicArn: EXCHANGE_CREATED_TOPIC,
+    Message: eventPayload,
   };
-  // Event meta injection
-  lambdaInvokeParams.Payload.meta = eventMeta;
-  
-  await lambda.invokeAsync(lambdaInvokeParams);
-  // Event emitters do not receive errors (only faults), so, makes no sense to handle errors here.
+  await sns.publish(lambdaInvokeParams, eventMeta);
 }
 
 module.exports = { emitExchangeCreated };

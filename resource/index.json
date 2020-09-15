@@ -1,0 +1,8 @@
+{
+    "exchange": {
+        "exchangeCreatedTopic": "${self:custom.stackPrefix}-exchangeCreatedTopic",
+        "createExchangeFunction": "${self:custom.stackPrefix}-createExchange",
+        "getRateFunction": "${self:custom.stackPrefix}-getRate",
+        "reportExchangeFunction": "${self:custom.stackPrefix}-reportExchange"
+    }
+}

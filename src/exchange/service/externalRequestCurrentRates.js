@@ -1,13 +1,15 @@
-const { ErrorHandled } = require('ebased/utils/error');
-const downstreamRequest = require('ebased/downstream/request');
+const { ErrorHandled } = require('ebased/util/error');
+const downstreamRequest = require('ebased/service/downstream/request');
 
 const GET_RATES_URL = process.env.GET_RATES_URL;
+const GET_RATES_METHOD = process.env.GET_RATES_METHOD;
 const GET_RATES_TIMEOUT = process.env.GET_RATES_TIMEOUT;
 
 const requestGetCurrentRates = async (getCurrentRatesCommand) => {
   const { commandPayload } = getCurrentRatesCommand.get();
   const requestParams = {
     url: GET_RATES_URL,
+    method: GET_RATES_METHOD,
     timeout: GET_RATES_TIMEOUT,
     params: commandPayload,
   };

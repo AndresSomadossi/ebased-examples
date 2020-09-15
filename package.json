@@ -18,10 +18,10 @@
   },
   "homepage": "https://github.com/AndresSomadossi/ebased-examples#readme",
   "dependencies": {
-    "ebased": "^1.0.1",
+    "ebased": "^1.1.1",
     "uuid": "^8.3.0"
   },
   "devDependencies": {
-    "serverless-pseudo-parameters": "^2.5.0"
+    "serverless-iam-roles-per-function": "^2.0.2"
   }
 }

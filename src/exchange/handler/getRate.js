@@ -1,5 +1,5 @@
-const { request } = require('ebased/input/commandInvoke');
-const { response, responseError } = require('ebased/output/commandInvoke');
+const { request } = require('ebased/handler/input/commandInvoke');
+const { response, responseError } = require('ebased/handler/output/commandInvoke');
 const getRateDomain = require('../domain/getRate');
 
 module.exports.handler = async (command, context) => {

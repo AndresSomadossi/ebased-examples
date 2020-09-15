@@ -2,30 +2,32 @@ frameworkVersion: ">=1.50.0"
 service: ebased-examples
 
 plugins:
-  - serverless-pseudo-parameters
-
+  - serverless-iam-roles-per-function
+  
 provider:
   name: aws
   runtime: nodejs12.x
-  region: us-east-1
+  region: ${opt:region, 'us-east-1'}
+  stage: ${opt:stage, 'dev'}
   tags:
     project: ebased-examples
   tracing:
     lambda: true
-  environment:
-    LOG_LEVEL: INFO
   iamRoleStatements:
-    - Effect: "Allow"
+    - Effect: Allow
       Action:
-        - "lambda:InvokeFunction"
-      Resource:
-        - '${self:custom.lambdaPrefixARN}${self:custom.getRateFunctionName}'
-        - '${self:custom.lambdaPrefixARN}${self:custom.reportExchangeFunctionName}'
+        - xray:PutTraceSegments
+        - xray:PutTelemetryRecords
+      Resource: '*'
+  environment:
+    NODE_ENV: ${self:provider.stage}
+    LOG_LEVEL: INFO
 
 custom:
-  lambdaPrefixARN: 'arn:aws:lambda:#{AWS::Region}:#{AWS::AccountId}:function:'
-  getRateFunctionName: '${self:service}-${self:provider.stage}-getRate'
-  reportExchangeFunctionName: '${self:service}-${self:provider.stage}-reportExchange'
-    
+  stackPrefix: '${self:service}-${self:provider.stage}'
+
 functions:
   - ${file(src/exchange/index.yml)}
+
+resources:
+  - ${file(resource/exchange/topic.yml)}

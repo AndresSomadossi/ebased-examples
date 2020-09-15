@@ -1,4 +1,4 @@
-const { DownstreamCommand } = require('ebased/utils/downstreamCommand');
+const { DownstreamCommand } = require('ebased/schema/downstreamCommand');
 
 class GetCurrentRatesCommand extends DownstreamCommand {
   constructor(payload) {

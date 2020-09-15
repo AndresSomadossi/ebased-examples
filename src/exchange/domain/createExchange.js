@@ -1,5 +1,5 @@
 const uuid = require('uuid');
-const { FaultHandled } = require('ebased/utils/error');
+const { FaultHandled } = require('ebased/util/error');
 const { CreateExchangeValidation } = require('../schema/input/createExchangeValidation');
 
 const { GetRateCommand } = require('../schema/command/getRate');

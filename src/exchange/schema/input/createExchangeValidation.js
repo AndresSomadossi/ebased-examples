@@ -1,4 +1,4 @@
-const { InputValidation } = require('ebased/utils/inputValidation');
+const { InputValidation } = require('ebased/schema/inputValidation');
 
 class CreateExchangeValidation extends InputValidation {
   constructor(payload, meta) {

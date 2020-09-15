@@ -1,4 +1,4 @@
-const { MetricEvent } = require('ebased/utils/metricEvent');
+const { MetricEvent } = require('ebased/schema/metricEvent');
 
 // Metric-Only Event
 class ExchangeReported extends MetricEvent {

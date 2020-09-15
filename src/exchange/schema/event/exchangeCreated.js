@@ -1,4 +1,4 @@
-const { DownstreamEvent } = require('ebased/utils/downstreamEvent');
+const { DownstreamEvent } = require('ebased/schema/downstreamEvent');
 
 class ExchangeCreatedEvent extends DownstreamEvent {
   constructor(payload, meta) {

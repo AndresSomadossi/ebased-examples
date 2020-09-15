@@ -1,0 +1,5 @@
+Resources:
+  ExchangeCreatedTopic:
+    Type: AWS::SNS::Topic
+    Properties:
+      TopicName: ${file(resource/index.json):exchange.exchangeCreatedTopic}
