@@ -3,3 +3,10 @@ Resources:
     Type: AWS::SNS::Topic
     Properties:
       TopicName: ${file(resource/index.json):exchange.exchangeCreatedTopic}
+  Subscription:
+    Type: 'AWS::SNS::Subscription'
+    Properties:
+      TopicArn: !Ref ExchangeCreatedTopic
+      Endpoint: !GetAtt CreateWithdrawalQueue.Arn
+      Protocol: 'sqs'
+      RawMessageDelivery: 'true'

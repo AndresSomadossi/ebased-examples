@@ -1,0 +1,44 @@
+Resources:
+  CreateDepositQueue:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: ${file(resource/index.json):account.createDepositQueue}
+  CreateWithdrawalQueue:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: ${file(resource/index.json):account.createWithdrawalQueue}
+  CreateWithdrawalQueuePolicy:
+    Type: AWS::SQS::QueuePolicy
+    Properties: 
+      PolicyDocument: 
+        Statement:
+          Effect: Allow
+          Principal: '*'
+          Action: 
+            - SQS:*
+          Resource: !GetAtt CreateWithdrawalQueue.Arn
+      Queues: 
+        - !Ref CreateWithdrawalQueue
+
+
+
+#         {
+#   "Version": "2012-10-17",
+#   "Id": "arn:aws:sqs:us-east-1:084299793407:ebased-examples-dev-createDepositQueue/SQSDefaultPolicy",
+#   "Statement": [
+#     {
+#       "Sid": "topic-subscription-arn:aws:sns:us-east-1:084299793407:ebased-examples-dev-exchangeCreatedTopic",
+#       "Effect": "Allow",
+#       "Principal": {
+#         "AWS": "*"
+#       },
+#       "Action": "SQS:SendMessage",
+#       "Resource": "arn:aws:sqs:us-east-1:084299793407:ebased-examples-dev-createDepositQueue",
+#       "Condition": {
+#         "ArnLike": {
+#           "aws:SourceArn": "arn:aws:sns:us-east-1:084299793407:ebased-examples-dev-exchangeCreatedTopic"
+#         }
+#       }
+#     }
+#   ]
+# }

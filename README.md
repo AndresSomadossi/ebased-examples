@@ -8,9 +8,9 @@ Examples using ebased as main library
 - sls deploy
 
 ### Function Local Invocation
-- export AWS_REGION=us-east-1 && export AWS_PROFILE=myawsprofile
+- export AWS_DEFAULT_REGION=us-east-1 && export AWS_REGION=us-east-1 && export AWS_PROFILE=myawsprofile
 
-- sls invoke local -f createExchange -d '{"base": "USD", "destination": "EUR", "amount": 10, "meta": {"clientId": "AA3366"} }'
+- sls invoke local -f createExchange  --context '{"invokedFunctionArn": "arn:aws:lambda:us-east-1:084299793407"}' -d '{"base": "USD", "destination": "EUR", "amount": 20, "meta": {"clientId": "AA3366", "trackingTag": "LOCAL01"} }'
 - sls invoke local -f createExchange -d '{"base": "USD", "destination": "EUR", "amount": "0"}'
 - sls invoke local -f getRate -d '{"base": "USD", "destination": "EUR"}'
 - sls invoke local -f getRate -d '{"base":"USD","destination":"EUR","meta":{ "source":"createExchange"} }'
@@ -20,7 +20,7 @@ Examples using ebased as main library
 
 ### Function Invocation
 
-- sls invoke -f createExchange -d '{"base": "USD", "destination": "EUR", "amount": 20, "meta": {"clientId": "AA3366", "trackingTag": "AB01"} }'
+- sls invoke -f createExchange -d '{"base": "USD", "destination": "EUR", "amount": 20, "meta": {"clientId": "AA3366", "trackingTag": "AB02"} }'
 - sls invoke -f createExchange -d '{"base": "USD", "destination": "EUR", "amount": "0"}'
 - sls invoke -f getRate -d '{"base": "USD", "destination": "EUR"}'
 - sls invoke -f getRate -d '{"base": "USD", "destination": "ARG"}'

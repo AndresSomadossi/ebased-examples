@@ -28,6 +28,8 @@ custom:
 
 functions:
   - ${file(src/exchange/index.yml)}
+  - ${file(src/account/index.yml)}
 
 resources:
   - ${file(resource/exchange/topic.yml)}
+  - ${file(resource/account/queue.yml)}

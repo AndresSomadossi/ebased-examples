@@ -4,5 +4,11 @@
         "createExchangeFunction": "${self:custom.stackPrefix}-createExchange",
         "getRateFunction": "${self:custom.stackPrefix}-getRate",
         "reportExchangeFunction": "${self:custom.stackPrefix}-reportExchange"
+    },
+    "account": {
+        "createDepositFunction": "${self:custom.stackPrefix}-createDeposit",
+        "createDepositQueue": "${self:custom.stackPrefix}-createDepositQueue",
+        "createWithdrawalFunction": "${self:custom.stackPrefix}-createWithdrawal",
+        "createWithdrawalQueue": "${self:custom.stackPrefix}-createWithdrawalQueue"
     }
 }

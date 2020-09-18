@@ -1,11 +1,12 @@
 createExchange:
   handler: src/exchange/handler/createExchange.handler
   name: ${file(resource/index.json):exchange.createExchangeFunction}
-  description: 'Create an exchange of money'
+  description: 'CMD: Creates an exchange of money'
   environment:
     GET_RATE_FUNCTION_NAME: ${file(resource/index.json):exchange.getRateFunction}
     REPORT_EXCHANGE_FUNCTION_NAME: ${file(resource/index.json):exchange.reportExchangeFunction}
     EXCHANGE_CREATED_TOPIC: ${file(resource/index.json):exchange.exchangeCreatedTopic}
+    CREATE_DEPOSIT_QUEUE: ${file(resource/index.json):account.createDepositQueue}
   iamRoleStatementsInherit: true
   iamRoleStatements:
     - Effect: Allow
@@ -19,11 +20,16 @@ createExchange:
         - sns:Publish
       Resource:
         - !Ref ExchangeCreatedTopic
+    - Effect: Allow
+      Action:
+        - sqs:SendMessage
+      Resource:
+        - !GetAtt CreateDepositQueue.Arn
 
 getRate:
   handler: src/exchange/handler/getRate.handler
   name: ${file(resource/index.json):exchange.getRateFunction}
-  description: 'Return the convertion rate for exchange money'
+  description: 'CMD: Returns the convertion rate for exchange money'
   environment:
     GET_RATES_URL: 'https://api.ratesapi.io/api/latest'
     GET_RATES_METHOD: 'GET'
@@ -32,7 +38,7 @@ getRate:
 reportExchange:
   handler: src/exchange/handler/reportExchange.handler
   name: ${file(resource/index.json):exchange.reportExchangeFunction}
-  description: 'Send a report of an exchange to an external API'
+  description: 'EVT: Sends a report of an exchange to an external API'
   environment:
     REPORT_EXCHANGE_URL: 'https://postman-echo.com/post'
     REPORT_EXCHANGE_METHOD: 'POST'

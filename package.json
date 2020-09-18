@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/AndresSomadossi/ebased-examples#readme",
   "dependencies": {
-    "ebased": "^1.1.1",
+    "ebased": "file:../ebased",
     "uuid": "^8.3.0"
   },
   "devDependencies": {
