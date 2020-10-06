@@ -1,0 +1,26 @@
+WalletGetBalance:
+  handler: src/wallet/getBalance.handler
+  name: ${file(resource/index.json):wallet.getBalance}
+  description: 'CMD: Returns the actual balance for an account'
+  events:
+    - http:
+        path: wallet/balance
+        method: get
+
+WalletGetTransaction:
+  handler: src/wallet/getTransaction.handler
+  name: ${file(resource/index.json):wallet.getTransaction}
+  description: 'CMD:  Returns a transaction by its id'
+  events:
+    - http:
+        path: wallet/transaction/{id}
+        method: post
+
+WalletGetTransactions:
+  handler: src/wallet/getTransactions.handler
+  name: ${file(resource/index.json):wallet.getTransactions}
+  description: 'CMD:  Returns the last N transactions for an account'
+  events:
+    - http:
+        path: wallet/transaction
+        method: get
