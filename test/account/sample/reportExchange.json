@@ -1,0 +1,23 @@
+{
+    "default": {
+        "payload": {
+            "id": "da2b012d-57fd-4614-975a-fbc7b5c89650",
+            "baseCurrency": "USD",
+            "baseAmount": 10,
+            "destinationCurrency": "EUR",
+            "destinationAmount": 8.40,
+            "rate": 0.8399126491
+        },
+        "meta": {
+            "clientId": "AABBCC112233"
+        }
+    },
+    "missing": {
+        "payload": {
+            "base": "USD",
+            "destination": "EUR",
+            "amount": 0
+        },
+        "description": "Input with missing required properties"
+    }
+}

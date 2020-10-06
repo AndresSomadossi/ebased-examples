@@ -1,0 +1,36 @@
+{
+    "default": {
+        "payload": {
+            "base": "USD",
+            "destination": "EUR",
+            "amount": 20
+        },
+        "meta": {
+            "clientId": "AABBCC112233"
+        }
+    },
+    "bad-a": {
+        "payload": {
+            "base": "USD",
+            "destination": "EUR",
+            "amount": 0
+        },
+        "description": "Input with bad amount"
+    },
+    "bad-b": {
+        "payload": {
+            "base": "USD2",
+            "destination": "EUR",
+            "amount": 10
+        },
+        "description": "Input with bad base"
+    },
+    "bad-c": {
+        "payload": {
+            "base": "USD",
+            "destination": "EUR2",
+            "amount": 10
+        },
+        "description": "Input with bad destination"
+    }
+}

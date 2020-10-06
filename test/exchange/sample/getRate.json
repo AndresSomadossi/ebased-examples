@@ -1,0 +1,23 @@
+{
+  "default": {
+    "payload": {
+      "base": "USD",
+      "destination": "EUR"
+    }
+  },
+  "bad-b": {
+    "payload": {
+      "base": "USD2",
+      "destination": "EUR"
+    },
+    "description": "Input with invalid base"
+
+  },
+  "bad-d": {
+    "payload": {
+      "base": "USD",
+      "destination": "EUR2"
+    },
+    "description": "Input with invalid destination"
+  }
+}
