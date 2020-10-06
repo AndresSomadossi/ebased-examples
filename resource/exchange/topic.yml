@@ -1,9 +1,10 @@
 Resources:
+  
   ExchangeCreatedTopic:
     Type: AWS::SNS::Topic
     Properties:
       TopicName: ${file(resource/index.json):exchange.exchangeCreatedTopic}
-  Subscription:
+  ExchangeCreatedSubscription:
     Type: 'AWS::SNS::Subscription'
     Properties:
       TopicArn: !Ref ExchangeCreatedTopic

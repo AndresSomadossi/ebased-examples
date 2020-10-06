@@ -1,10 +1,11 @@
 const { DownstreamCommand } = require('ebased/schema/downstreamCommand');
 
 class ReportExchangeCommand extends DownstreamCommand {
-  constructor(payload) {
+  constructor(payload, meta) {
     super({
       type: 'REPORT_EXCHANGE_COMMAND',
       payload: payload,
+      meta: meta,
       requestSchema: {
         id: { type: 'uuid/v4', required: true },
         baseCurrency: { type: String, required: true },

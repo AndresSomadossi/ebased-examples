@@ -7,7 +7,7 @@ const { requestGetCurrentRates } = require('../service/externalRequestCurrentRat
 module.exports = async (commandPayload, commandMeta) => {
   new GetRateValidation(commandPayload, commandMeta);
   const { base, destination } = commandPayload;
-  const rate = await requestGetCurrentRates(new GetCurrentRatesCommand({ base }));
+  const rate = await requestGetCurrentRates(new GetCurrentRatesCommand({ base }, commandMeta));
   if (!rate[destination])
     throw new ErrorHandled(`Destination '${destination}' is not supported`, {
       code: 'INVALID_DESTINATION_ERROR',

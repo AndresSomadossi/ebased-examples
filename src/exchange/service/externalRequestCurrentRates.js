@@ -6,7 +6,7 @@ const GET_RATES_METHOD = process.env.GET_RATES_METHOD;
 const GET_RATES_TIMEOUT = process.env.GET_RATES_TIMEOUT;
 
 const requestGetCurrentRates = async (getCurrentRatesCommand) => {
-  const { commandPayload } = getCurrentRatesCommand.get();
+  const { commandPayload, commandMeta } = getCurrentRatesCommand.get();
   const requestParams = {
     url: GET_RATES_URL,
     method: GET_RATES_METHOD,
@@ -14,7 +14,7 @@ const requestGetCurrentRates = async (getCurrentRatesCommand) => {
     params: commandPayload,
   };
 
-  const response = await downstreamRequest(requestParams).catch(error => {
+  const response = await downstreamRequest(requestParams, commandMeta).catch(error => {
     if (error instanceof ErrorHandled) {
       // In this case, errors come in this format: {error: 'details about the error'}, so we have to
       // normalize it.

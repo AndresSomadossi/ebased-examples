@@ -27,7 +27,7 @@ module.exports = async (commandPayload, commandMeta) => {
   };
   // Service Async
   await emitExchangeCreated(new ExchangeCreatedEvent(exchangeCreated, commandMeta));
-  // Always body is the payload of the command response
+  // Body is always the payload of the command response
   return { body: exchangeCreated };
 }
 

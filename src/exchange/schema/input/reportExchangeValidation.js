@@ -14,7 +14,6 @@ class ReportExchangeValidation extends InputValidation {
         destinationCurrency: { type: String, required: true },
         destinationAmount: { type: Number, required: true },
         rate: { type: Number, required: true },
-        message: { type: String, required: false },
       },
     })
   }

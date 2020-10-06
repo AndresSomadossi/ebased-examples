@@ -1,20 +1,21 @@
-createExchange:
+ExchangeCreateExchange:
   handler: src/exchange/handler/createExchange.handler
-  name: ${file(resource/index.json):exchange.createExchangeFunction}
+  name: ${file(resource/index.json):exchange.createExchange}
   description: 'CMD: Creates an exchange of money'
   environment:
-    GET_RATE_FUNCTION_NAME: ${file(resource/index.json):exchange.getRateFunction}
-    REPORT_EXCHANGE_FUNCTION_NAME: ${file(resource/index.json):exchange.reportExchangeFunction}
+    GET_RATE_FUNCTION_NAME: ${file(resource/index.json):exchange.getRate}
+    REPORT_EXCHANGE_FUNCTION_NAME: ${file(resource/index.json):exchange.reportExchange}
     EXCHANGE_CREATED_TOPIC: ${file(resource/index.json):exchange.exchangeCreatedTopic}
     CREATE_DEPOSIT_QUEUE: ${file(resource/index.json):account.createDepositQueue}
   iamRoleStatementsInherit: true
+  iamRoleStatementsName: ${file(resource/index.json):exchange.createExchange}
   iamRoleStatements:
     - Effect: Allow
       Action:
         - lambda:InvokeFunction
       Resource:
-        - !GetAtt GetRateLambdaFunction.Arn
-        - !GetAtt ReportExchangeLambdaFunction.Arn
+        - !GetAtt ExchangeGetRateLambdaFunction.Arn
+        - !GetAtt ExchangeReportExchangeLambdaFunction.Arn
     - Effect: Allow
       Action:
         - sns:Publish
@@ -25,19 +26,23 @@ createExchange:
         - sqs:SendMessage
       Resource:
         - !GetAtt CreateDepositQueue.Arn
+  # events:
+  #   - http:
+  #       path: exchange
+  #       method: post
 
-getRate:
+ExchangeGetRate:
   handler: src/exchange/handler/getRate.handler
-  name: ${file(resource/index.json):exchange.getRateFunction}
+  name: ${file(resource/index.json):exchange.getRate}
   description: 'CMD: Returns the convertion rate for exchange money'
   environment:
     GET_RATES_URL: 'https://api.ratesapi.io/api/latest'
     GET_RATES_METHOD: 'GET'
     GET_RATES_TIMEOUT: 3000
 
-reportExchange:
+ExchangeReportExchange:
   handler: src/exchange/handler/reportExchange.handler
-  name: ${file(resource/index.json):exchange.reportExchangeFunction}
+  name: ${file(resource/index.json):exchange.reportExchange}
   description: 'EVT: Sends a report of an exchange to an external API'
   environment:
     REPORT_EXCHANGE_URL: 'https://postman-echo.com/post'

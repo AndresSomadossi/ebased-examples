@@ -8,13 +8,13 @@ class ExchangeCreatedEvent extends DownstreamEvent {
       payload: payload,
       meta: meta,
       schema: {
+        strict: false,
         id: { type: 'uuid/v4', required: true },
         baseCurrency: { type: String, required: true },
         baseAmount: { type: Number, required: true },
         destinationCurrency: { type: String, required: true },
         destinationAmount: { type: Number, required: true },
         rate: { type: Number, required: true },
-        message: { type: String, required: false },
       },
     })
   }

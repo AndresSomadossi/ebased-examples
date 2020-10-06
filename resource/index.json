@@ -1,14 +1,19 @@
 {
     "exchange": {
-        "exchangeCreatedTopic": "${self:custom.stackPrefix}-exchangeCreatedTopic",
-        "createExchangeFunction": "${self:custom.stackPrefix}-createExchange",
-        "getRateFunction": "${self:custom.stackPrefix}-getRate",
-        "reportExchangeFunction": "${self:custom.stackPrefix}-reportExchange"
+        "exchangeCreatedTopic": "${self:custom.stackPrefix}-exchange-exchangeCreatedTopic",
+        "createExchange": "${self:custom.stackPrefix}-exchange-createExchange",
+        "getRate": "${self:custom.stackPrefix}-exchange-getRate",
+        "reportExchange": "${self:custom.stackPrefix}-exchange-reportExchange"
     },
     "account": {
-        "createDepositFunction": "${self:custom.stackPrefix}-createDeposit",
-        "createDepositQueue": "${self:custom.stackPrefix}-createDepositQueue",
-        "createWithdrawalFunction": "${self:custom.stackPrefix}-createWithdrawal",
-        "createWithdrawalQueue": "${self:custom.stackPrefix}-createWithdrawalQueue"
+        "createDeposit": "${self:custom.stackPrefix}-account-createDeposit",
+        "createDepositQueue": "${self:custom.stackPrefix}-account-createDepositQueue",
+        "createWithdrawal": "${self:custom.stackPrefix}-account-createWithdrawal",
+        "createWithdrawalQueue": "${self:custom.stackPrefix}-account-createWithdrawalQueue"
+    },
+    "wallet": {
+        "getTransactions": "${self:custom.stackPrefix}-wallet-getTransactions",
+        "getTransaction": "${self:custom.stackPrefix}-wallet-getTransaction",
+        "getBalance": "${self:custom.stackPrefix}-wallet-getBalance"
     }
 }

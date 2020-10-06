@@ -1,4 +1,4 @@
-frameworkVersion: ">=1.50.0"
+frameworkVersion: "1.78.1"
 service: ebased-examples
 
 plugins:
@@ -13,6 +13,7 @@ provider:
     project: ebased-examples
   tracing:
     lambda: true
+    apiGateway: true
   iamRoleStatements:
     - Effect: Allow
       Action:
@@ -29,6 +30,7 @@ custom:
 functions:
   - ${file(src/exchange/index.yml)}
   - ${file(src/account/index.yml)}
+  - ${file(src/wallet/index.yml)}
 
 resources:
   - ${file(resource/exchange/topic.yml)}

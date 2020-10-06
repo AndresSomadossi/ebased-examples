@@ -1,10 +1,11 @@
 const { DownstreamCommand } = require('ebased/schema/downstreamCommand');
 
 class GetCurrentRatesCommand extends DownstreamCommand {
-  constructor(payload) {
+  constructor(payload, meta) {
     super({
       type: 'GET_CURRENT_RATES_COMMAND',
       payload: payload,
+      meta: meta,
       requestSchema: {
         base: { type: String, required: true },
       },

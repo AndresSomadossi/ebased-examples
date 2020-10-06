@@ -10,7 +10,7 @@ class CreateExchangeValidation extends InputValidation {
       schema: {
         base: { type: String, required: true },
         destination: { type: String, required: true },
-        amount: { type: Number, required: true },
+        amount: { type: Number, min: 1, required: true },
       },
     })
   }
