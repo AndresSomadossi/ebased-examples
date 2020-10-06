@@ -1,14 +1,14 @@
-createDeposit:
+AccountCreateDeposit:
   handler: src/account/createDeposit.handler
-  name: ${file(resource/index.json):account.createDepositFunction}
+  name: ${file(resource/index.json):account.createDeposit}
   description: 'EVT: Creates a deposit'
   events:
     - sqs: 
         arn: !GetAtt CreateDepositQueue.Arn
 
-createWithdrawal:
+AccountCreateWithdrawal:
   handler: src/account/createWithdrawal.handler
-  name: ${file(resource/index.json):account.createWithdrawalFunction}
+  name: ${file(resource/index.json):account.createWithdrawal}
   description: 'EVT: Creates a withdrawal'
   events:
     - sqs: 
