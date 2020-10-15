@@ -1,0 +1,35 @@
+config:
+  target: https://{{ $processEnvironment.API }}.execute-api.us-east-1.amazonaws.com
+  defaults:
+    headers:
+      source: 'loadtest'
+      tracking-tag: 'load-test-013'
+  phases:
+    # - name: Unitary
+    #   duration: 1
+    #   arrivalRate: 1
+
+    - name: Burst
+      duration: 10
+      arrivalRate: 50
+      
+    # - name: Warm up
+    #   duration: 60
+    #   arrivalRate: 5
+      
+    # - name: Ramp up load
+    #   duration: 120
+    #   arrivalRate: 5
+    #   rampTo: 50
+      
+    # - name: Heavy Sustained load
+    #   duration: 600
+    #   arrivalRate: 50
+scenarios:
+  - name: 'NewTransaction'
+    flow:
+      - post:
+          url: '/dev/exchange'
+          headers:
+            client-id: '{{ $randomString() }}'
+          body: '{ "base": "USD",  "destination": "EUR",  "amount": 4444 }'

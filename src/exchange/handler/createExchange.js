@@ -1,6 +1,6 @@
 const { commandMapper } = require('ebased/handler');
-const inputMode = require('ebased/handler/input/commandInvoke');
-const outputMode = require('ebased/handler/output/commandInvoke');
+const inputMode = require('ebased/handler/input/commandApi');
+const outputMode = require('ebased/handler/output/commandApi');
 
 const createExchangeDomain = require('../domain/createExchange');
 

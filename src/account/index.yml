@@ -2,14 +2,33 @@ AccountCreateDeposit:
   handler: src/account/createDeposit.handler
   name: ${file(resource/index.json):account.createDeposit}
   description: 'EVT: Creates a deposit'
+  iamRoleStatementsInherit: true
+  iamRoleStatementsName: ${file(resource/index.json):account.createDeposit}
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - sqs:ChangeMessageVisibility
+        - sqs:DeleteMessage
+      Resource:
+        - !GetAtt CreateDepositQueue.Arn
   events:
     - sqs: 
         arn: !GetAtt CreateDepositQueue.Arn
+  
 
 AccountCreateWithdrawal:
   handler: src/account/createWithdrawal.handler
   name: ${file(resource/index.json):account.createWithdrawal}
   description: 'EVT: Creates a withdrawal'
+  iamRoleStatementsInherit: true
+  iamRoleStatementsName: ${file(resource/index.json):account.createWithdrawal}
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - sqs:ChangeMessageVisibility
+        - sqs:DeleteMessage
+      Resource:
+        - !GetAtt CreateWithdrawalQueue.Arn
   events:
     - sqs: 
         arn: !GetAtt CreateWithdrawalQueue.Arn

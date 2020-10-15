@@ -4,6 +4,7 @@ Resources:
     Type: AWS::SNS::Topic
     Properties:
       TopicName: ${file(resource/index.json):exchange.exchangeCreatedTopic}
+      
   ExchangeCreatedSubscription:
     Type: 'AWS::SNS::Subscription'
     Properties:

@@ -26,10 +26,10 @@ ExchangeCreateExchange:
         - sqs:SendMessage
       Resource:
         - !GetAtt CreateDepositQueue.Arn
-  # events:
-  #   - http:
-  #       path: exchange
-  #       method: post
+  events:
+    - http:
+        path: exchange
+        method: post
 
 ExchangeGetRate:
   handler: src/exchange/handler/getRate.handler

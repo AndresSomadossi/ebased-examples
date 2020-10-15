@@ -15,7 +15,6 @@ Examples using ebased as main library
 - ebased invoke -f WalletGetBalance
 - ebased invoke -f WalletGetTransactions
 
-
 ### Deploy
 - export AWS_DEFAULT_REGION=us-east-1 && export AWS_PROFILE=myawsprofile
 - sls deploy
