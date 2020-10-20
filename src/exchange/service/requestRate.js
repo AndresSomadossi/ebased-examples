@@ -1,8 +1,9 @@
-const { ErrorHandled } = require('ebased/util/error');
+const config = require('ebased/util/config');
 const lambda = require('ebased/service/downstream/lambda');
+const { ErrorHandled } = require('ebased/util/error');
 
 // Configs
-const GET_RATE_FUNCTION_NAME = process.env.GET_RATE_FUNCTION_NAME;
+const GET_RATE_FUNCTION_NAME = config.get('GET_RATE_FUNCTION_NAME');
 
 const requestGetRate = async (getRateCommand) => {
   const { commandPayload, commandMeta } = getRateCommand.get();

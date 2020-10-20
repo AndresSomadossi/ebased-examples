@@ -1,8 +1,9 @@
+const config = require('ebased/util/config');
 const sns = require('ebased/service/downstream/sns');
 const sqs = require('ebased/service/downstream/sqs');
 
-const EXCHANGE_CREATED_TOPIC = process.env.EXCHANGE_CREATED_TOPIC;
-const CREATE_DEPOSIT_QUEUE = process.env.CREATE_DEPOSIT_QUEUE;
+const EXCHANGE_CREATED_TOPIC = config.get('EXCHANGE_CREATED_TOPIC');
+const CREATE_DEPOSIT_QUEUE = config.get('CREATE_DEPOSIT_QUEUE');
 
 const emitExchangeCreated = async (exchangeCreatedEvent) => {
   const { eventPayload, eventMeta } = exchangeCreatedEvent.get();

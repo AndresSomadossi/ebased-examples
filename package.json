@@ -18,8 +18,8 @@
   },
   "homepage": "https://github.com/AndresSomadossi/ebased-examples#readme",
   "dependencies": {
-    "ebased": "^1.4.4",
-    "uuid": "^8.3.0"
+    "ebased": "^1.5.0",
+    "uuid": "^8.3.1"
   },
   "devDependencies": {
     "serverless": "1.78.1",

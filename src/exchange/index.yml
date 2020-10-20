@@ -36,9 +36,7 @@ ExchangeGetRate:
   name: ${file(resource/index.json):exchange.getRate}
   description: 'CMD: Returns the convertion rate for exchange money'
   environment:
-    GET_RATES_URL: 'https://api.ratesapi.io/api/latest'
-    GET_RATES_METHOD: 'GET'
-    GET_RATES_TIMEOUT: 3000
+    STATIC_CONFIG: ${ssm:${file(resource/index.json):exchange.getRate}~true}
 
 ExchangeReportExchange:
   handler: src/exchange/handler/reportExchange.handler

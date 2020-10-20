@@ -1,4 +1,11 @@
 {
+  "STATIC_CONFIG": {
+    "GET_CURRENT_RATES_SERVICE": {
+      "URL": "https://api.ratesapi.io/api/latest",
+      "METHOD": "GET",
+      "TIMEOUT": 3000
+    }
+  },
   "default": {
     "payload": {
       "base": "USD",

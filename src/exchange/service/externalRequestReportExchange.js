@@ -1,16 +1,20 @@
-const { ErrorHandled } = require('ebased/util/error');
+const config = require('ebased/util/config');
 const downstreamRequest = require('ebased/service/downstream/request');
+const { ErrorHandled } = require('ebased/util/error');
 
-const REPORT_EXCHANGE_URL = process.env.REPORT_EXCHANGE_URL;
-const REPORT_EXCHANGE_METHOD = process.env.REPORT_EXCHANGE_METHOD;
-const REPORT_EXCHANGE_TIMEOUT = process.env.REPORT_EXCHANGE_TIMEOUT;
+const URL = config.get('REPORT_EXCHANGE_URL');
+const METHOD = config.get('REPORT_EXCHANGE_METHOD');
+const TIMEOUT = config.get('REPORT_EXCHANGE_TIMEOUT');
+const TIMEOUT2 = config.get('REPORT_EXCHANGE_TIMEOUT2');
+
+// const { URL, METHOD, TIMEOUT } = config.get('REPORT_EXCHANGE_SERVICE');
 
 const reportExchange = async (reportExchangeCommand) => {
   const { commandPayload } = reportExchangeCommand.get();
   const requestParams = {
-    url: REPORT_EXCHANGE_URL,
-    method: REPORT_EXCHANGE_METHOD,
-    timeout: REPORT_EXCHANGE_TIMEOUT,
+    url: URL,
+    method: METHOD,
+    timeout: TIMEOUT,
     data: commandPayload,
   };
   // External commands doesn't use meta injection
