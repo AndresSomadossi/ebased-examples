@@ -1,0 +1,51 @@
+frameworkVersion: '1.78.1'
+service: ebased-examples-menu
+
+plugins:
+  - serverless-iam-roles-per-function
+  
+provider:
+  name: aws
+  runtime: nodejs12.x
+  region: ${opt:region, 'us-east-1'}
+  stage: ${opt:stage, 'dev'}
+  tags:
+    project: ebased-examples
+  tracing:
+    lambda: true
+    apiGateway: true
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - xray:PutTraceSegments
+        - xray:PutTelemetryRecords
+      Resource: '*'
+  environment:
+    CONTEXT: EBASED_MENU
+    LOG_LEVEL: INFO
+    MENU_TABLE: ${self:custom.menuTableName}
+
+custom:
+  stackPrefix: ${self:service}-${self:provider.stage}
+  menuTableName: ${self:service}-${self:provider.stage}-menu
+  
+functions:
+  - ${file(./index.yml)}
+
+resources:
+  Resources:
+    MenuTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:custom.menuTableName}
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: pk
+            AttributeType: S
+          - AttributeName: sk
+            AttributeType: S
+        KeySchema:
+          - AttributeName: pk
+            KeyType: HASH
+          - AttributeName: sk
+            KeyType: RANGE

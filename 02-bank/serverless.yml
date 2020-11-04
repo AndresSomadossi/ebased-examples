@@ -1,4 +1,4 @@
-frameworkVersion: "1.78.1"
+frameworkVersion: '1.78.1'
 service: ebased-examples
 
 plugins:
@@ -21,7 +21,7 @@ provider:
         - xray:PutTelemetryRecords
       Resource: '*'
   environment:
-    NODE_ENV: ${self:provider.stage}
+    CONTEXT: EBASED_BANK
     LOG_LEVEL: INFO
 
 custom:

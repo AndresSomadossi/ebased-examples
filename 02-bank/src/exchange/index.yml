@@ -3,6 +3,7 @@ ExchangeCreateExchange:
   name: ${file(resource/index.json):exchange.createExchange}
   description: 'CMD: Creates an exchange of money'
   environment:
+    # STATIC_CONFIG: ${ssm:${file(resource/index.json):exchange.createExchange}~true}
     GET_RATE_FUNCTION_NAME: ${file(resource/index.json):exchange.getRate}
     REPORT_EXCHANGE_FUNCTION_NAME: ${file(resource/index.json):exchange.reportExchange}
     EXCHANGE_CREATED_TOPIC: ${file(resource/index.json):exchange.exchangeCreatedTopic}
@@ -35,6 +36,8 @@ ExchangeGetRate:
   handler: src/exchange/handler/getRate.handler
   name: ${file(resource/index.json):exchange.getRate}
   description: 'CMD: Returns the convertion rate for exchange money'
+  iamRoleStatementsInherit: true
+  iamRoleStatementsName: ${file(resource/index.json):exchange.getRate}
   environment:
     STATIC_CONFIG: ${ssm:${file(resource/index.json):exchange.getRate}~true}
 
@@ -42,6 +45,8 @@ ExchangeReportExchange:
   handler: src/exchange/handler/reportExchange.handler
   name: ${file(resource/index.json):exchange.reportExchange}
   description: 'EVT: Sends a report of an exchange to an external API'
+  iamRoleStatementsInherit: true
+  iamRoleStatementsName: ${file(resource/index.json):exchange.reportExchange}
   environment:
     REPORT_EXCHANGE_URL: 'https://postman-echo.com/post'
     REPORT_EXCHANGE_METHOD: 'POST'

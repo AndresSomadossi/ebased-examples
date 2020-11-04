@@ -3,7 +3,7 @@
     "GET_CURRENT_RATES_SERVICE": {
       "URL": "https://api.ratesapi.io/api/latest",
       "METHOD": "GET",
-      "TIMEOUT": 3000
+      "TIMEOUT": 4000
     }
   },
   "default": {

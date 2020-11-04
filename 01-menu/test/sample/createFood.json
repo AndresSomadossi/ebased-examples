@@ -1,0 +1,8 @@
+{
+    "default": {
+        "payload": {
+            "name": "Milanesas",
+            "other": "non required field"
+        }
+    }
+}

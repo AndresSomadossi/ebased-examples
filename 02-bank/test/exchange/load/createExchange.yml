@@ -9,18 +9,18 @@ config:
     #   duration: 1
     #   arrivalRate: 1
 
-    - name: Burst
-      duration: 10
-      arrivalRate: 50
+    # - name: Burst
+    #   duration: 10
+    #   arrivalRate: 50
       
-    # - name: Warm up
-    #   duration: 60
-    #   arrivalRate: 5
+    - name: Warm up
+      duration: 60
+      arrivalRate: 5
       
-    # - name: Ramp up load
-    #   duration: 120
-    #   arrivalRate: 5
-    #   rampTo: 50
+    - name: Ramp up load
+      duration: 120
+      arrivalRate: 5
+      rampTo: 50
       
     # - name: Heavy Sustained load
     #   duration: 600

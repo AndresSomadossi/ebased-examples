@@ -1,0 +1,69 @@
+CreateFood:
+  handler: src/createFood.handler
+  events:
+    - http:
+        path: food
+        method: post
+  iamRoleStatementsInherit: true
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:PutItem
+      Resource:
+        - !GetAtt MenuTable.Arn
+
+DeleteFood:
+  handler: src/deleteFood.handler
+  events:
+    - http:
+        path: food/{id}
+        method: delete
+  iamRoleStatementsInherit: true
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:DeleteItem
+      Resource:
+        - !GetAtt MenuTable.Arn
+
+GetFood:
+  handler: src/getFood.handler
+  events:
+    - http:
+        path: food/{id}
+        method: get
+  iamRoleStatementsInherit: true
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:GetItem
+      Resource:
+        - !GetAtt MenuTable.Arn
+        
+ListFood:
+  handler: src/listFood.handler
+  events:
+    - http:
+        path: food
+        method: get
+  iamRoleStatementsInherit: true
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:Query
+      Resource:
+        - !GetAtt MenuTable.Arn
+
+UpdateFood:
+  handler: src/updateFood.handler
+  events:
+    - http:
+        path: food/{id}
+        method: put
+  iamRoleStatementsInherit: true
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:UpdateItem
+      Resource:
+        - !GetAtt MenuTable.Arn
